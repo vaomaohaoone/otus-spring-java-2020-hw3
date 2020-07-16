@@ -8,8 +8,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 public class User {
-    private String name;
-    private String surname;
+    private final String name;
+    private final String surname;
 
     @Override
     public boolean equals(Object o) {

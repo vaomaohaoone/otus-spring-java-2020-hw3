@@ -125,7 +125,5 @@ public class LocaleTextServiceTest {
         verify(consoleService, times(5)).write(anyString());
         verify(consoleService).readInt();
         assertEquals(2, result);
-
-
     }
 }

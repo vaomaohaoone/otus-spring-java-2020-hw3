@@ -10,7 +10,6 @@ public class App {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
         AppService appService = context.getBean(AppService.class);
-        appService.addShutdownHook();
         appService.game();
     }
 }

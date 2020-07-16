@@ -1,58 +1,42 @@
 package ru.otus.spring.course.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.context.MessageSource;
 import ru.otus.spring.course.data.Line;
 import ru.otus.spring.course.data.User;
+/**
+ * Сервис локализованного ввода/вывода текста
+ * */
+public interface LocaleTextService {
 
-import java.util.Locale;
+    /**
+     * Метод выводящий сообщение "Итог: или Total:"*/
+    void printTotalLine();
 
-@AllArgsConstructor
-public class LocaleTextService {
-    private final ConsoleService consoleService;
-    private final Locale locale;
-    private final MessageSource messageSource;
+    /**
+     * Метод выводящий сообщение "Программа завершена или Program completed"*/
+    void printProgramCompletedLine();
 
-    public void printTotalLine() {
-        String totalLine = messageSource.getMessage("message.total", null, locale);
-        consoleService.write(totalLine);
-    }
+    /**
+     * Метод выводящий сообщение об ошибке в вводе имени и фамилии*/
+    void printInvalidBunchFullName();
 
-    public void printProgramCompletedLine() {
-        String completedLine = messageSource.getMessage("message.end", null, locale);
-        consoleService.write(completedLine);
-    }
+    /**
+     * Метод выводящий текст предложения ввода имени и фамилии*/
+    void printWelcomeLine();
 
-    public void printInvalidBunchFullName() {
-        String invalidBunchLine = messageSource.getMessage("message.error", null, locale);
-        consoleService.write(invalidBunchLine);
-    }
+    /**
+     * Метод выводящий приветственное предложение*/
+    void printHelloLine();
 
-    public void printWelcomeLine() {
-        String welcomeLine = messageSource.getMessage("message.input", null, locale);
-        consoleService.write(welcomeLine);
-    }
+    /**
+     * Метод, выводящий количество очков пользователя*/
+    void printUserScore(User user, Integer points);
 
-    public void printHelloLine() {
-        String helloLine = messageSource.getMessage("message.hello", null, locale);
-        consoleService.write(helloLine);
-    }
+    /**
+     * Метод запроса ввода имени и фамилии*/
+    String requestFullName();
 
-    public void printUserScore(User user, Integer points) {
-        String userScore = messageSource.getMessage("message.result",
-                new String[]{user.getName(), user.getSurname(), points.toString()}, locale);
-        consoleService.write(userScore);
-    }
-
-    public String requestFullName() {
-        return consoleService.read();
-    }
-
-    public Integer printQuestionAndReadAnswer(Line line) {
-        consoleService.write(line.getQuestion());
-        for (int i = 0; i < line.getOptions().size(); i++) {
-            consoleService.write(String.format("%d. %s", i + 1, line.getOptions().get(i)));
-        }
-        return consoleService.readInt();
-    }
+    /**
+     * Метод вывода вопроса и вариантов ответа, а так же запроса ответа пользователя*/
+    Integer printQuestionAndReadAnswer(Line line);
 }
+

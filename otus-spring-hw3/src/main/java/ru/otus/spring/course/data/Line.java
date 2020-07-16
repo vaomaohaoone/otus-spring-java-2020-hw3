@@ -8,7 +8,7 @@ import java.util.List;
 @Builder
 @Getter
 public class Line {
-    private String question;
-    private List<String> options;
-    private int answer;
+    private final String question;
+    private final List<String> options;
+    private final int answer;
 }
